@@ -14,8 +14,8 @@ import com.michaelmagdy.publicHealthCareDemo.R
 import com.michaelmagdy.publicHealthCareDemo.adapter.TaskAdapter
 import com.michaelmagdy.publicHealthCareDemo.adapter.TaskAdapter.Deletetask
 import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentListofNoteBinding
-import com.michaelmagdy.publicHealthCareDemo.dbDirectery.TaskDatabase
-import com.michaelmagdy.publicHealthCareDemo.dbDirectery.TaskItem
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.HealthCareDatabase
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity
 import com.michaelmagdy.publicHealthCareDemo.toast
 import kotlinx.coroutines.*
 
@@ -26,7 +26,7 @@ class ListofNoteFragment : BaseFragment(), Deletetask {
     private val binding get() = listofNoteBinding
 
     private lateinit var viewModel: ListofNoteViewModel
-    private lateinit var arrayList: List<TaskItem>
+    private lateinit var arrayList: List<UserEntity>
     private lateinit var taskAdapter: TaskAdapter;
 
     override fun onCreateView(
@@ -69,11 +69,11 @@ class ListofNoteFragment : BaseFragment(), Deletetask {
 
             withContext(Dispatchers.Main) {
                 context?.let {
-                    if (TaskDatabase(it).TaskDao().getAllTask().isNotEmpty()) {
+                    if (HealthCareDatabase(it).userDao().getAllUsers().isNotEmpty()) {
 
                         binding.recycleview.adapter = TaskAdapter(
                             requireContext(),
-                            TaskDatabase(it).TaskDao().getAllTask(),
+                            HealthCareDatabase(it).userDao().getAllUsers(),
                             this@ListofNoteFragment
                         )
 
@@ -84,17 +84,17 @@ class ListofNoteFragment : BaseFragment(), Deletetask {
 
 
 
-            Log.e("TAG", "onViewCreated: " + TaskDatabase(requireContext()).TaskDao().getAllTask())
+            Log.e("TAG", "onViewCreated: " + HealthCareDatabase(requireContext()).userDao().getAllUsers())
         }
 
         binding.recycleview.adapter?.notifyDataSetChanged()
     }
 
     @OptIn(DelicateCoroutinesApi::class)
-    override fun deletitem(taskItem: TaskItem) {
+    override fun deletitem(userEntity: UserEntity) {
 
         GlobalScope.launch {
-            TaskDatabase(requireContext()).TaskDao().deletitem(taskItem)
+            HealthCareDatabase(requireContext()).userDao().delete(userEntity)
 
 
         }

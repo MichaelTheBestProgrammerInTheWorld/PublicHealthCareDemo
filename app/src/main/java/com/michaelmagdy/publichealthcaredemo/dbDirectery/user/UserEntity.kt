@@ -1,4 +1,4 @@
-package com.michaelmagdy.publicHealthCareDemo.dbDirectery
+package com.michaelmagdy.publicHealthCareDemo.dbDirectery.user
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
@@ -8,14 +8,12 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity
-data class TaskItem(
+data class UserEntity(
 
-    @ColumnInfo(name = "title")
-    var taskname: String,
-    @ColumnInfo(name = "Description")
-    var TaskDescription: String,
-    @ColumnInfo(name = "priority")
-    var priority: Int
+
+    var username: String,
+    var password: String,
+    var locationId: Int
 
 ):Parcelable  {
     @PrimaryKey(autoGenerate = true)

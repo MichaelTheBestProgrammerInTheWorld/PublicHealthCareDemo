@@ -9,15 +9,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.michaelmagdy.publicHealthCareDemo.R
 import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentAddNoteBinding
-import com.michaelmagdy.publicHealthCareDemo.dbDirectery.TaskDatabase
-import com.michaelmagdy.publicHealthCareDemo.dbDirectery.TaskItem
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.HealthCareDatabase
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity
 import com.michaelmagdy.publicHealthCareDemo.toast
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class AddNoteFragment : BaseFragment() {
-    private var utaskItem: TaskItem? = null
+    private var utaskItem: UserEntity? = null
 
     companion object {
         fun newInstance() = AddNoteFragment()
@@ -44,8 +44,8 @@ class AddNoteFragment : BaseFragment() {
         viewModel = ViewModelProvider(this)[AddNoteViewModel::class.java]
         arguments?.let {
             utaskItem = AddNoteFragmentArgs.fromBundle(it).taskItem
-            binding.etName.setText(utaskItem?.taskname)
-            binding.etDescreptiuon.setText(utaskItem?.TaskDescription)
+            binding.etName.setText(utaskItem?.username)
+            binding.etDescreptiuon.setText(utaskItem?.password)
         }
 
         binding.btnAdd.setOnClickListener(View.OnClickListener {
@@ -54,19 +54,19 @@ class AddNoteFragment : BaseFragment() {
 
 
                     context?.let {
-                        val taskItem = TaskItem(
+                        val userEntity = UserEntity(
                             binding.etName.text.toString(),
                             binding.etDescreptiuon.text.toString(),
                             0
                         );
                         if (utaskItem == null) {
 
-                            TaskDatabase(it).TaskDao().inserttaskItem(taskItem)
+                            HealthCareDatabase(it).userDao().createUser(userEntity)
 
 
                         } else {
-                             taskItem.id= utaskItem?.id!!
-                            TaskDatabase(it).TaskDao().updatetak(taskItem)
+                             userEntity.id= utaskItem?.id!!
+                            //HealthCareDatabase(it).userDao().update(userEntity)
 
 
 

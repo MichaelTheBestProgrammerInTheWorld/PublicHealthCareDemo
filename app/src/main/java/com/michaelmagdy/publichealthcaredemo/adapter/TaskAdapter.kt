@@ -8,13 +8,13 @@ import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.michaelmagdy.publicHealthCareDemo.fragment.ListofNoteFragment
 import com.michaelmagdy.publicHealthCareDemo.fragment.ListofNoteFragmentDirections
-import com.michaelmagdy.publicHealthCareDemo.dbDirectery.TaskItem
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity
 import com.michaelmagdy.publicHealthCareDemo.databinding.TasklistitemBinding
 
 class TaskAdapter(
     private val listofNoteFragment: Context,
-    private val getallItemlist: List<TaskItem>,
-  private val listofNoteFragment1: ListofNoteFragment
+    private val getallItemlist: List<UserEntity>,
+    private val listofNoteFragment1: ListofNoteFragment
 ) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>() {
 
     class MyViewHolder(val binding: TasklistitemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -40,8 +40,8 @@ class TaskAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.binding.titel.setText(getallItemlist.get(position).taskname)
-        holder.binding.descrepthion.setText(getallItemlist.get(position).TaskDescription)
+        holder.binding.titel.setText(getallItemlist.get(position).username)
+        holder.binding.descrepthion.setText(getallItemlist.get(position).password)
         holder.binding.delet.setOnClickListener {
             listofNoteFragment1.deletitem(getallItemlist.get(position))
             notifyItemRemoved(position)
@@ -58,6 +58,6 @@ class TaskAdapter(
         }
     }
  public   interface Deletetask{
-        fun deletitem(taskItem: TaskItem)
+        fun deletitem(userEntity: UserEntity)
     }
 }

@@ -24,7 +24,7 @@
         <argument
 
             android:name="TaskItem"
-            app:argType="com.michaelmagdy.publicHealthCareDemo.dbDirectery.TaskItem"
+            app:argType="com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
