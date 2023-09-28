@@ -1,4 +1,4 @@
-package com.michaelmagdy.publichealthcaredemo
+package com.michaelmagdy.publicHealthCareDemo
 
 import org.junit.Test
 

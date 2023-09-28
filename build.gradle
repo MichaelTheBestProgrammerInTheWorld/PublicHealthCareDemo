@@ -1,0 +1,17 @@
+buildscript {
+//    ext {
+//        kotlin_version = '1.9.0-Beta'
+//    }
+    repositories {
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.6.0"
+        //classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+plugins {
+
+}
