@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragment.AddNoteFragment">
+    tools:context=".fragment.CreateAccountFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_gravity="center_vertical"
@@ -25,6 +25,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="visible">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Account"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:layout_marginBottom="25dp"/>
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_name"
                 android:background="@drawable/edittextback"
@@ -37,7 +44,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:minHeight="30dp"
-                android:hint="Title"
+                android:hint="Username"
                 android:padding="10dp"
                 android:textColor="@color/black"
                 android:textAllCaps="false"
@@ -48,7 +55,7 @@
                 android:id="@+id/et_descreptiuon"
                 android:background="@drawable/edittextback"
                 android:layout_margin="5dp"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
@@ -56,13 +63,22 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:minHeight="35dp"
-                android:lines="5"
-                android:hint="Description"
+                android:lines="1"
+                android:hint="Password"
                 android:padding="10dp"
                 android:textColor="@color/black"
                 android:textAllCaps="false"
                 android:elevation="9dp"
                 />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spn_location"
+                android:minHeight="30dp"
+                android:padding="10dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittextback"/>
 
             <View
                 android:layout_marginTop="20dp"
@@ -95,13 +111,19 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:elevation="10dp"
-
-                    android:text="Save" />
+                    android:text="Sign up" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_sign_in"
+                android:gravity="center"
+                android:text="Already have an account? sign in ->"
+                android:textSize="25sp"/>
 
 
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.michaelmagdy.publicHealthCareDemo.R
-import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentAddNoteBinding
+import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentCreateAccountBinding
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.HealthCareDatabase
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity
 import com.michaelmagdy.publicHealthCareDemo.toast
@@ -16,17 +16,17 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class AddNoteFragment : BaseFragment() {
+class CreateAccountFragment : BaseFragment() {
     private var utaskItem: UserEntity? = null
 
     companion object {
-        fun newInstance() = AddNoteFragment()
+        fun newInstance() = CreateAccountFragment()
     }
 
-    private lateinit var addNoteBinding: FragmentAddNoteBinding
+    private lateinit var addNoteBinding: FragmentCreateAccountBinding
     private val binding get() = addNoteBinding
 
-    private lateinit var viewModel: AddNoteViewModel
+    private lateinit var viewModel: CreateAccountViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,16 +34,16 @@ class AddNoteFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        addNoteBinding = FragmentAddNoteBinding.inflate(layoutInflater, container, false)
+        addNoteBinding = FragmentCreateAccountBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[AddNoteViewModel::class.java]
+        viewModel = ViewModelProvider(this)[CreateAccountViewModel::class.java]
         arguments?.let {
-            utaskItem = AddNoteFragmentArgs.fromBundle(it).taskItem
+            utaskItem = CreateAccountFragmentArgs.fromBundle(it).userEntity
             binding.etName.setText(utaskItem?.username)
             binding.etDescreptiuon.setText(utaskItem?.password)
         }
@@ -82,7 +82,7 @@ class AddNoteFragment : BaseFragment() {
                     context?.toast("Data Updated Successfully")
                 }
 
-                findNavController().navigate(R.id.action_addNoteFragment_to_home_fragment)
+                findNavController().navigate(R.id.action_createAccountFragment_to_signInFragment)
 
 
             }

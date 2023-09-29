@@ -77,6 +77,13 @@ class ListofNoteFragment : BaseFragment(), Deletetask {
                             this@ListofNoteFragment
                         )
 
+                    } else {
+                        val userEntity = UserEntity(
+                            "admin",
+                            "admin",
+                            0
+                        )
+                        HealthCareDatabase(it).userDao().createUser(userEntity)
                     }
                 }
 

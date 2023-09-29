@@ -51,7 +51,7 @@ class TaskAdapter(
 
         holder.binding.root.setOnClickListener {
 
-            val action = ListofNoteFragmentDirections.actionMobileNavigationToAddNoteFragment().setTaskItem(getallItemlist[position])
+            val action = ListofNoteFragmentDirections.actionMobileNavigationToAddNoteFragment().setUserEntity(getallItemlist[position])
 
 
             findNavController(it).navigate(action)
