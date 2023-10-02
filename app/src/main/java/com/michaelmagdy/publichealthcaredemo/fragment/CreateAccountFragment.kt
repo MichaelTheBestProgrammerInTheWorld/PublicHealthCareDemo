@@ -55,8 +55,8 @@ class CreateAccountFragment : BaseFragment() {
 
                     context?.let {
                         val userEntity = UserEntity(
-                            binding.etName.text.toString(),
-                            binding.etDescreptiuon.text.toString(),
+                            binding.etName.text.toString().lowercase(),
+                            binding.etDescreptiuon.text.toString().lowercase(),
                             0
                         );
                         if (utaskItem == null) {

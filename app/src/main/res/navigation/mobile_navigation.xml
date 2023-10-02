@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/home_fragment">
+    app:startDestination="@id/signIn_fragment">
     <fragment
         android:id="@+id/home_fragment"
         android:name="com.michaelmagdy.publicHealthCareDemo.fragment.ListofNoteFragment"
@@ -27,6 +27,19 @@
             app:argType="com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity"
             app:nullable="true"
             android:defaultValue="@null" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signIn_fragment"
+        android:name="com.michaelmagdy.publicHealthCareDemo.fragment.SignInFragment"
+        android:label="Sign In"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_signIn_to_createAccount"
+            app:destination="@id/createAccountFragment" />
+        <action
+            android:id="@+id/action_signIn_to_homeScreen"
+            app:destination="@id/home_fragment" />
     </fragment>
 
 </navigation>
