@@ -28,10 +28,13 @@ interface ProviderDao {
     suspend fun getProviderServices(id: Int): List<Int>
 
     @Insert
-    suspend  fun insertProvider(category: Category)
+    suspend  fun insertProvider(providerEntity: ProviderEntity)
 
     @Query("SELECT * FROM providerentity ORDER BY id DESC")
     suspend fun getAllProviders(): List<ProviderEntity>
+
+    @Query("SELECT providerName FROM providerentity ORDER BY id DESC")
+    suspend fun getAllProvidersTitles(): List<String>
 
     @Query("SELECT * FROM providerentity WHERE categoryId= :categoryId")
     suspend fun getAllProvidersByCategory(categoryId: Int): List<ProviderEntity>
@@ -45,6 +48,9 @@ interface ProviderDao {
 
     @Query("SELECT * FROM providerentity WHERE id= :providerId")
     suspend fun getProviderById(providerId: Int): ProviderEntity
+
+    @Query("SELECT id FROM providerentity WHERE providerName= :name")
+    suspend fun getProviderId(name: String): Int
 
     @Delete
     suspend fun deleteProvider(providerEntity: ProviderEntity)

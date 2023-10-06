@@ -16,12 +16,14 @@ import com.michaelmagdy.publicHealthCareDemo.currentUserId
 import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentHomeBinding
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.HealthCareDatabase
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.provider.Category
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.provider.ProviderEntity
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.provider.ProviderServices
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.service.ServiceEntity
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity
 import com.michaelmagdy.publicHealthCareDemo.toast
 import kotlinx.coroutines.*
 
 class HomeFragment : BaseFragment(), DeleteItem {
-
 
     private lateinit var homeBinding: FragmentHomeBinding
     private val binding get() = homeBinding
@@ -43,6 +45,27 @@ class HomeFragment : BaseFragment(), DeleteItem {
 //            }
 //        }
 
+
+//        GlobalScope.launch {
+//            context?.let {
+//                HealthCareDatabase(it).providerDao()
+//                    .insertProvider(ProviderEntity(
+//                        "Dar Al-Fouad",
+//                        1,
+//                        1
+//                    ))
+//                HealthCareDatabase(it).serviceDao()
+//                    .insertService(ServiceEntity(
+//                        "ICU",
+//                        1
+//                    ))
+//                HealthCareDatabase(it).providerDao()
+//                    .insertProviderService(ProviderServices(
+//                        HealthCareDatabase(it).providerDao().getProviderId("Dar Al-Fouad"),
+//                        HealthCareDatabase(it).serviceDao().getServiceId("ICU")
+//                    ))
+//            }
+//        }
         homeBinding = FragmentHomeBinding.inflate(inflater, container, false)
         return homeBinding.root
     }
@@ -86,10 +109,18 @@ class HomeFragment : BaseFragment(), DeleteItem {
                 context?.let {
                     if (HealthCareDatabase(it).providerDao().getAllCategories().isNotEmpty()) {
 
-                        binding.recycleview.adapter = ListAdapter(
-
-                            HealthCareDatabase(it).providerDao().getAllCategoriesTitles()
+                        var list = HealthCareDatabase(it).providerDao().getAllCategoriesTitles()
+                        listAdapter = ListAdapter(
+                            list
                         )
+
+                        listAdapter.setOnItemClickListener(object : ListAdapter.OnItemClickListener{
+                            override fun onItemClick(position: Int) {
+                                it.toast("${list[position]} is clicked")
+                            }
+                        })
+
+                        binding.recycleview.adapter = listAdapter
 
                     } else {
                         context?.toast("Nothing to show")

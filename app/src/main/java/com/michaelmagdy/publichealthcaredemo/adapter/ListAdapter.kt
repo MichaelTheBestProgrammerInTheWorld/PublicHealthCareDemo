@@ -34,6 +34,11 @@ class ListAdapter(
         return getallItemlist.size
     }
 
+    private lateinit var onItemClickListener: ListAdapter.OnItemClickListener
+
+    fun setOnItemClickListener(onItemClickListener: OnItemClickListener){
+        this.onItemClickListener = onItemClickListener
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -48,11 +53,15 @@ class ListAdapter(
 
         holder.binding.root.setOnClickListener {
 
+            onItemClickListener.onItemClick(position)
 //            val action = ListofNoteFragmentDirections.actionMobileNavigationToAddNoteFragment().setUserEntity(getallItemlist[position])
 //            findNavController(it).navigate(action)
         }
     }
- public   interface DeleteItem{
+    interface OnItemClickListener{
+        fun onItemClick(position: Int)
+    }
+    interface DeleteItem{
         fun deletitem(userEntity: UserEntity)
     }
 }

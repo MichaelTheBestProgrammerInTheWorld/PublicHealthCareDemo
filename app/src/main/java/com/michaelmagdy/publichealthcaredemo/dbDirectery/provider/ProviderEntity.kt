@@ -14,7 +14,6 @@ data class ProviderEntity(
     var providerName: String,
     var categoryId: Int,
     var locationId: Int,
-    var services: List<Int>,
 
     ): Parcelable {
     @PrimaryKey(autoGenerate = true)

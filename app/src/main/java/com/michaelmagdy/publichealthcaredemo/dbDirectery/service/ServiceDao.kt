@@ -23,6 +23,9 @@ interface ServiceDao {
     @Query("SELECT * FROM serviceentity WHERE id= :serviceId")
     suspend fun getServiceById(serviceId: Int): ServiceEntity
 
+    @Query("SELECT id FROM serviceentity WHERE serviceName= :name")
+    suspend fun getServiceId(name: String): Int
+
     @Delete
     suspend fun delete(serviceEntity: ServiceEntity)
 }
