@@ -15,6 +15,7 @@ import com.michaelmagdy.publicHealthCareDemo.adapter.ListAdapter.DeleteItem
 import com.michaelmagdy.publicHealthCareDemo.currentUserId
 import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentHomeBinding
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.HealthCareDatabase
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.provider.Category
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity
 import com.michaelmagdy.publicHealthCareDemo.toast
 import kotlinx.coroutines.*
@@ -31,6 +32,16 @@ class HomeFragment : BaseFragment(), DeleteItem {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+//        GlobalScope.launch {
+//            context?.let {
+//                HealthCareDatabase(it).providerDao()
+//                    .insertCategory(Category("Hospital"))
+//                HealthCareDatabase(it).providerDao()
+//                    .insertCategory(Category("Clinic"))
+//                HealthCareDatabase(it).providerDao()
+//                    .insertCategory(Category("Pharmacy"))
+//            }
+//        }
 
         homeBinding = FragmentHomeBinding.inflate(inflater, container, false)
         return homeBinding.root
@@ -76,9 +87,8 @@ class HomeFragment : BaseFragment(), DeleteItem {
                     if (HealthCareDatabase(it).providerDao().getAllCategories().isNotEmpty()) {
 
                         binding.recycleview.adapter = ListAdapter(
-                            requireContext(),
-                            HealthCareDatabase(it).providerDao().getAllCategories(),
-                            this@HomeFragment
+
+                            HealthCareDatabase(it).providerDao().getAllCategoriesTitles()
                         )
 
                     } else {

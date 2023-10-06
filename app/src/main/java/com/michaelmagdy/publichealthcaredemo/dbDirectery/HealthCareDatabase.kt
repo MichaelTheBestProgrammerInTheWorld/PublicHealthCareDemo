@@ -12,13 +12,14 @@ import com.michaelmagdy.publicHealthCareDemo.dbDirectery.location.LocationEntity
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.provider.Category
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.provider.ProviderDao
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.provider.ProviderEntity
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.provider.ProviderServices
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.service.ServiceDao
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.service.ServiceEntity
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserDao
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity
 
 @Database(entities = [UserEntity::class, ServiceEntity::class,
-    ProviderEntity::class, Category::class, LocationEntity::class,
+    ProviderEntity::class, Category::class, ProviderServices::class, LocationEntity::class,
     BookingEntity::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class HealthCareDatabase : RoomDatabase() {

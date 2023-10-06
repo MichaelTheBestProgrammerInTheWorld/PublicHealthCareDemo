@@ -15,9 +15,17 @@ interface ProviderDao {
     @Query("SELECT * FROM category ORDER BY categoryId DESC")
     suspend fun getAllCategories(): List<Category>
 
+    @Query("SELECT title FROM category ORDER BY categoryId DESC")
+    suspend fun getAllCategoriesTitles(): List<String>
+
     @Delete
     suspend fun deleteCategory(category: Category)
 
+    @Insert
+    suspend  fun insertProviderService(providerServices: ProviderServices)
+
+    @Query("SELECT serviceId FROM providerservices WHERE providerId= :id")
+    suspend fun getProviderServices(id: Int): List<Int>
 
     @Insert
     suspend  fun insertProvider(category: Category)

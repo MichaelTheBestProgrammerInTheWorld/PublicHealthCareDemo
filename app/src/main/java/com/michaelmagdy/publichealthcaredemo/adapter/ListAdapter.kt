@@ -11,9 +11,7 @@ import com.michaelmagdy.publicHealthCareDemo.databinding.TasklistitemBinding
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.provider.Category
 
 class ListAdapter(
-    private val listofNoteFragment: Context,
-    private val getallItemlist: List<Category>,
-    private val homeFragment1: HomeFragment
+    private val getallItemlist: List<String>
 ) : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     class MyViewHolder(val binding: TasklistitemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -39,7 +37,7 @@ class ListAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.binding.titel.setText(getallItemlist.get(position).title)
+        holder.binding.titel.setText(getallItemlist.get(position))
         //holder.binding.descrepthion.setText(getallItemlist.get(position).password)
 //        holder.binding.delet.setOnClickListener {
 //            listofNoteFragment1.deletitem(getallItemlist.get(position))
