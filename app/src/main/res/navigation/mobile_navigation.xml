@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/home_fragment"
         android:name="com.michaelmagdy.publicHealthCareDemo.fragment.ListofNoteFragment"
-        android:label="Note List"
+        android:label="Service List"
         tools:layout="@layout/fragment_listof_note">
         <action
             android:id="@+id/action_mobile_navigation_to_addNoteFragment"
@@ -20,6 +20,9 @@
         tools:layout="@layout/fragment_create_account" >
         <action
             android:id="@+id/action_createAccountFragment_to_signInFragment"
+            app:destination="@id/signIn_fragment" />
+        <action
+            android:id="@+id/action_createAccountFragment_to_homeFragment"
             app:destination="@id/home_fragment" />
         <argument
 

@@ -5,21 +5,26 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.michaelmagdy.publicHealthCareDemo.R
 import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentCreateAccountBinding
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.HealthCareDatabase
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.location.LocationEntity
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity
 import com.michaelmagdy.publicHealthCareDemo.toast
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class CreateAccountFragment : BaseFragment() {
+class CreateAccountFragment : BaseFragment(), AdapterView.OnItemSelectedListener {
     private var utaskItem: UserEntity? = null
 
-    companion object {
+    var locationId = 0
+
+        companion object {
         fun newInstance() = CreateAccountFragment()
     }
 
@@ -33,9 +38,74 @@ class CreateAccountFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        GlobalScope.launch {
+            context?.let {
+                HealthCareDatabase(it).locationDao().insertLocation(LocationEntity("Heliopolis"))
+                HealthCareDatabase(it).locationDao().insertLocation(LocationEntity("zeitoun"))
+            }
+        }
 
         addNoteBinding = FragmentCreateAccountBinding.inflate(layoutInflater, container, false)
+        setLocationSpinner()
         return binding.root
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?,
+                                view: View, position: Int,
+                                id: Long) {
+
+        getLocationId(parent?.selectedItem.toString())
+    }
+
+    private fun getLocationId(location: String) {
+        GlobalScope.launch {
+            context?.let {
+              locationId =  HealthCareDatabase(it).locationDao().getLocationId(location)
+            }
+        }
+    }
+
+    private fun getAllLocations() {
+
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+    private fun setLocationSpinner() {
+
+
+        //TODO: LOCATIONS LIST BUG FIX
+        GlobalScope.launch {
+            context?.let {
+                val locationsList =  HealthCareDatabase(it).locationDao().getAllLocations()
+                var locations = arrayOfNulls<String>(locationsList.size)
+                for (i in 0..locationsList.size-1){
+                    locations[i] = locationsList.get(i).locationName
+                }
+                val ad: ArrayAdapter<*> = ArrayAdapter<Any?>(
+                    requireContext(),
+                    android.R.layout.simple_spinner_item,
+                    locations)
+                ad.setDropDownViewResource(
+                    android.R.layout.simple_spinner_dropdown_item)
+                binding.spnLocation.adapter = ad
+
+            }
+        }
+
+        binding.spnLocation.onItemSelectedListener = this
+
+        // Create the instance of ArrayAdapter
+        // having the list of courses
+
+
+        // set simple layout resource file
+        // for each item of spinner
+
+
+        // Set the ArrayAdapter (ad) data on the
+        // Spinner which binds data to spinner
+
     }
 
     @OptIn(DelicateCoroutinesApi::class)
@@ -46,6 +116,10 @@ class CreateAccountFragment : BaseFragment() {
             utaskItem = CreateAccountFragmentArgs.fromBundle(it).userEntity
             binding.etName.setText(utaskItem?.username)
             binding.etDescreptiuon.setText(utaskItem?.password)
+        }
+
+        binding.btnSignIn.setOnClickListener {
+            findNavController().navigate(R.id.action_createAccountFragment_to_signInFragment)
         }
 
         binding.btnAdd.setOnClickListener(View.OnClickListener {
@@ -82,7 +156,7 @@ class CreateAccountFragment : BaseFragment() {
                     context?.toast("Data Updated Successfully")
                 }
 
-                findNavController().navigate(R.id.action_createAccountFragment_to_signInFragment)
+                findNavController().navigate(R.id.action_createAccountFragment_to_homeFragment)
 
 
             }
@@ -114,12 +188,18 @@ class CreateAccountFragment : BaseFragment() {
 
     private fun validation(): Boolean {
         if (TextUtils.isEmpty(binding.etName.text)) {
-            context?.toast("Please enter task title")
+            context?.toast("Please enter username")
 
 
             return false
         } else if (TextUtils.isEmpty(binding.etDescreptiuon.text)) {
-            context?.toast("Please enter task description")
+            context?.toast("Please enter password")
+
+
+
+            return false
+        } else if (binding.etName.text.toString().lowercase() == "admin") {
+            context?.toast("You cant use this username")
 
 
 

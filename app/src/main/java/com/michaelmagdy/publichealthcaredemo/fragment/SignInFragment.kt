@@ -2,6 +2,7 @@ package com.michaelmagdy.publicHealthCareDemo.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.michaelmagdy.publicHealthCareDemo.R
 import com.michaelmagdy.publicHealthCareDemo.adapter.TaskAdapter
+import com.michaelmagdy.publicHealthCareDemo.currentUserId
 import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentSignInBinding
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.HealthCareDatabase
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity
@@ -59,7 +61,9 @@ class SignInFragment : BaseFragment() {
         }
 
         binding.btnLogin.setOnClickListener {
-            signInUser()
+            if (validation()){
+                signInUser()
+            }
         }
 
     }
@@ -73,13 +77,10 @@ class SignInFragment : BaseFragment() {
                     if (loggedUser
                             != null) {
 
+                        currentUserId = loggedUser.id
                         findNavController().navigate(R.id.action_signIn_to_homeScreen)
                     } else {
-                        Toast.makeText(
-                            it,
-                            "Wrong username or password",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        context?.toast("Wrong username or password")
                     }
                 }
 
@@ -120,6 +121,23 @@ class SignInFragment : BaseFragment() {
             Log.e("TAG", "onViewCreated: " + HealthCareDatabase(requireContext()).userDao().getAllUsers())
         }
 
+
+    }
+
+    private fun validation(): Boolean {
+        if (TextUtils.isEmpty(binding.etName.text)) {
+            context?.toast("Please enter username")
+
+
+            return false
+        } else if (TextUtils.isEmpty(binding.etPassword.text)) {
+            context?.toast("Please enter password")
+
+
+
+            return false
+        }
+        return true
 
     }
 

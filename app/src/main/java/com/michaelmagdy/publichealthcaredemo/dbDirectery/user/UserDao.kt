@@ -15,6 +15,9 @@ interface UserDao {
     @Query("SELECT * FROM userentity WHERE username= :name and password= :psw")
     suspend fun getUser(name: String, psw: String): UserEntity
 
+    @Query("SELECT * FROM userentity WHERE id= :id")
+    suspend fun getUserById(id: Int): UserEntity
+
     @Delete
     suspend fun delete(userEntity: UserEntity)
 }
