@@ -6,34 +6,34 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.michaelmagdy.publicHealthCareDemo.R
-import com.michaelmagdy.publicHealthCareDemo.adapter.TaskAdapter
-import com.michaelmagdy.publicHealthCareDemo.adapter.TaskAdapter.Deletetask
-import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentListofNoteBinding
+import com.michaelmagdy.publicHealthCareDemo.adapter.ListAdapter
+import com.michaelmagdy.publicHealthCareDemo.adapter.ListAdapter.DeleteItem
+import com.michaelmagdy.publicHealthCareDemo.currentUserId
+import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentHomeBinding
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.HealthCareDatabase
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity
 import com.michaelmagdy.publicHealthCareDemo.toast
 import kotlinx.coroutines.*
 
-class ListofNoteFragment : BaseFragment(), Deletetask {
+class HomeFragment : BaseFragment(), DeleteItem {
 
 
-    private lateinit var listofNoteBinding: FragmentListofNoteBinding
-    private val binding get() = listofNoteBinding
+    private lateinit var homeBinding: FragmentHomeBinding
+    private val binding get() = homeBinding
 
-    private lateinit var viewModel: ListofNoteViewModel
     private lateinit var arrayList: List<UserEntity>
-    private lateinit var taskAdapter: TaskAdapter;
+    private lateinit var listAdapter: ListAdapter;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        listofNoteBinding = FragmentListofNoteBinding.inflate(inflater, container, false)
-        return listofNoteBinding.root
+
+        homeBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        return homeBinding.root
     }
 
 
@@ -41,8 +41,12 @@ class ListofNoteFragment : BaseFragment(), Deletetask {
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[ListofNoteViewModel::class.java]
 
+        Log.d("currentUserId", currentUserId.toString())
+        if (currentUserId == 1){
+
+            binding.febAdd.visibility = View.VISIBLE
+        }
         binding.recycleview.apply {
             layoutManager =
                 LinearLayoutManager(context?.applicationContext, RecyclerView.VERTICAL, true)
@@ -69,21 +73,16 @@ class ListofNoteFragment : BaseFragment(), Deletetask {
 
             withContext(Dispatchers.Main) {
                 context?.let {
-                    if (HealthCareDatabase(it).userDao().getAllUsers().isNotEmpty()) {
+                    if (HealthCareDatabase(it).providerDao().getAllCategories().isNotEmpty()) {
 
-                        binding.recycleview.adapter = TaskAdapter(
+                        binding.recycleview.adapter = ListAdapter(
                             requireContext(),
-                            HealthCareDatabase(it).userDao().getAllUsers(),
-                            this@ListofNoteFragment
+                            HealthCareDatabase(it).providerDao().getAllCategories(),
+                            this@HomeFragment
                         )
 
                     } else {
-                        val userEntity = UserEntity(
-                            "admin",
-                            "admin",
-                            0
-                        )
-                        HealthCareDatabase(it).userDao().createUser(userEntity)
+                        context?.toast("Nothing to show")
                     }
                 }
 

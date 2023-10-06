@@ -4,18 +4,17 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.michaelmagdy.publicHealthCareDemo.fragment.ListofNoteFragment
-import com.michaelmagdy.publicHealthCareDemo.fragment.ListofNoteFragmentDirections
+import com.michaelmagdy.publicHealthCareDemo.fragment.HomeFragment
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity
 import com.michaelmagdy.publicHealthCareDemo.databinding.TasklistitemBinding
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.provider.Category
 
-class TaskAdapter(
+class ListAdapter(
     private val listofNoteFragment: Context,
-    private val getallItemlist: List<UserEntity>,
-    private val listofNoteFragment1: ListofNoteFragment
-) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>() {
+    private val getallItemlist: List<Category>,
+    private val homeFragment1: HomeFragment
+) : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     class MyViewHolder(val binding: TasklistitemBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -40,24 +39,22 @@ class TaskAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.binding.titel.setText(getallItemlist.get(position).username)
-        holder.binding.descrepthion.setText(getallItemlist.get(position).password)
-        holder.binding.delet.setOnClickListener {
-            listofNoteFragment1.deletitem(getallItemlist.get(position))
-            notifyItemRemoved(position)
-            notifyDataSetChanged()
-
-        }
+        holder.binding.titel.setText(getallItemlist.get(position).title)
+        //holder.binding.descrepthion.setText(getallItemlist.get(position).password)
+//        holder.binding.delet.setOnClickListener {
+//            listofNoteFragment1.deletitem(getallItemlist.get(position))
+//            notifyItemRemoved(position)
+//            notifyDataSetChanged()
+//
+//        }
 
         holder.binding.root.setOnClickListener {
 
-            val action = ListofNoteFragmentDirections.actionMobileNavigationToAddNoteFragment().setUserEntity(getallItemlist[position])
-
-
-            findNavController(it).navigate(action)
+//            val action = ListofNoteFragmentDirections.actionMobileNavigationToAddNoteFragment().setUserEntity(getallItemlist[position])
+//            findNavController(it).navigate(action)
         }
     }
- public   interface Deletetask{
+ public   interface DeleteItem{
         fun deletitem(userEntity: UserEntity)
     }
 }

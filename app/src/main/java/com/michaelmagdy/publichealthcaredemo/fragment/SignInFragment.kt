@@ -4,20 +4,16 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.michaelmagdy.publicHealthCareDemo.R
-import com.michaelmagdy.publicHealthCareDemo.adapter.TaskAdapter
 import com.michaelmagdy.publicHealthCareDemo.currentUserId
 import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentSignInBinding
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.HealthCareDatabase
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.location.LocationEntity
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity
 import com.michaelmagdy.publicHealthCareDemo.toast
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -111,6 +107,15 @@ class SignInFragment : BaseFragment() {
                             0
                         )
                         HealthCareDatabase(it).userDao().createUser(userEntity)
+                    }
+                    if (HealthCareDatabase(it).locationDao().getAllLocations().isNotEmpty()) {
+
+
+                    } else {
+                        val locationEntity = LocationEntity(
+                            "Heliopolis"
+                        )
+                        HealthCareDatabase(it).locationDao().insertLocation(locationEntity)
                     }
                 }
 

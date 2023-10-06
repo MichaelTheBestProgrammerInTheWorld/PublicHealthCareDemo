@@ -9,7 +9,7 @@
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".Fragment.ListofNoteFragment">
+    tools:context=".fragment.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
 
@@ -32,6 +32,7 @@
         android:baselineAlignBottom="true"
         android:src="@android:drawable/ic_input_add"
         app:fabSize="normal"
-        app:maxImageSize="40dp" />
+        app:maxImageSize="40dp"
+        android:visibility="gone"/>
 
 </RelativeLayout>

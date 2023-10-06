@@ -38,12 +38,6 @@ class CreateAccountFragment : BaseFragment(), AdapterView.OnItemSelectedListener
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        GlobalScope.launch {
-            context?.let {
-                HealthCareDatabase(it).locationDao().insertLocation(LocationEntity("Heliopolis"))
-                HealthCareDatabase(it).locationDao().insertLocation(LocationEntity("zeitoun"))
-            }
-        }
 
         addNoteBinding = FragmentCreateAccountBinding.inflate(layoutInflater, container, false)
         setLocationSpinner()
@@ -131,7 +125,8 @@ class CreateAccountFragment : BaseFragment(), AdapterView.OnItemSelectedListener
                         val userEntity = UserEntity(
                             binding.etName.text.toString().lowercase(),
                             binding.etDescreptiuon.text.toString().lowercase(),
-                            0
+                            HealthCareDatabase(it).locationDao()
+                                .getLocationId(binding.spnLocation.selectedItem.toString())
                         );
                         if (utaskItem == null) {
 

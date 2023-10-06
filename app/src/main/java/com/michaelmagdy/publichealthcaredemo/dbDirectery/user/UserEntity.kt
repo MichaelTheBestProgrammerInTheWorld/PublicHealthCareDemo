@@ -13,7 +13,7 @@ data class UserEntity(
 
     var username: String,
     var password: String,
-    var locationId: Int
+    var locationId: Int = 0
 
 ):Parcelable  {
     @PrimaryKey(autoGenerate = true)
