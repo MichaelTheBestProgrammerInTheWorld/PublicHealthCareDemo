@@ -18,6 +18,9 @@ interface ProviderDao {
     @Query("SELECT title FROM category ORDER BY categoryId DESC")
     suspend fun getAllCategoriesTitles(): List<String>
 
+    @Query("SELECT categoryId FROM category WHERE title= :name")
+    suspend fun getCategoryId(name: String): Int
+
     @Delete
     suspend fun deleteCategory(category: Category)
 

@@ -2,8 +2,8 @@
   <library name="Gradle: androidx.room:room-runtime:2.5.2@aar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c933fd1ae638845656f5c52e5bb17761/transformed/room-runtime-2.5.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c933fd1ae638845656f5c52e5bb17761/transformed/room-runtime-2.5.2/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c933fd1ae638845656f5c52e5bb17761/transformed/room-runtime-2.5.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c933fd1ae638845656f5c52e5bb17761/transformed/room-runtime-2.5.2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

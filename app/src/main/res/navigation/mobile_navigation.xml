@@ -7,11 +7,14 @@
     <fragment
         android:id="@+id/home_fragment"
         android:name="com.michaelmagdy.publicHealthCareDemo.fragment.HomeFragment"
-        android:label="Service List"
+        android:label="Category List"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_mobile_navigation_to_addNoteFragment"
             app:destination="@id/createAccountFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_providersFragment"
+            app:destination="@id/provider_fragment" />
     </fragment>
     <fragment
         android:id="@+id/createAccountFragment"
@@ -43,6 +46,35 @@
         <action
             android:id="@+id/action_signIn_to_homeScreen"
             app:destination="@id/home_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/provider_fragment"
+        android:name="com.michaelmagdy.publicHealthCareDemo.fragment.booking.ProvidersFragment"
+        android:label="Providers List"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_providersFragment_to_servicesFragment"
+            app:destination="@id/service_fragment" />
+        <argument
+            android:name="categoryId"
+            app:argType="integer"
+            android:defaultValue="0" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/service_fragment"
+        android:name="com.michaelmagdy.publicHealthCareDemo.fragment.booking.ServicesFragment"
+        android:label="Services List"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_servicesFragment_to_homeFragment"
+            app:destination="@id/home_fragment" />
+        <argument
+            android:name="providerId"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 
 </navigation>

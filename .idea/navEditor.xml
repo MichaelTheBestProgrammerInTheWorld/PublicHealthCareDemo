@@ -13,12 +13,17 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="12" />
+                            <option name="x" value="500" />
+                            <option name="y" value="37" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_createAccountFragment_to_homeFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_createAccountFragment_to_signInFragment">
                               <value>
                                 <LayoutPositions />
@@ -34,12 +39,17 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-1767" />
-                            <option name="y" value="-5116" />
+                            <option name="x" value="256" />
+                            <option name="y" value="368" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_homeFragment_to_providersFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_mobile_navigation_to_addNoteFragment">
                               <value>
                                 <LayoutPositions />
@@ -50,7 +60,49 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="si">
+                  <entry key="provider_fragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="500" />
+                            <option name="y" value="393" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_providersFragment_to_servicesFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="service_fragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="744" />
+                            <option name="y" value="436" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_servicesFragment_to_homeFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="signIn_fragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -61,7 +113,12 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_mobile_navigation_to_addNoteFragment">
+                            <entry key="action_signIn_to_createAccount">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_signIn_to_homeScreen">
                               <value>
                                 <LayoutPositions />
                               </value>

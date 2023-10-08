@@ -31,7 +31,6 @@ class SignInFragment : BaseFragment() {
     private lateinit var signInBinding: FragmentSignInBinding
     private val binding get() = signInBinding
 
-    private lateinit var viewModel: ListofNoteViewModel
     private lateinit var arrayList: List<UserEntity>
 
     override fun onCreateView(
@@ -46,7 +45,6 @@ class SignInFragment : BaseFragment() {
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[ListofNoteViewModel::class.java]
 
         // coroutine implementation
         getDataFromDb()

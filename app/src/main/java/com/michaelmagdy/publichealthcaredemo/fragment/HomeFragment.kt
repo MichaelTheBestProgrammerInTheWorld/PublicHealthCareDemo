@@ -116,7 +116,13 @@ class HomeFragment : BaseFragment(), DeleteItem {
 
                         listAdapter.setOnItemClickListener(object : ListAdapter.OnItemClickListener{
                             override fun onItemClick(position: Int) {
-                                it.toast("${list[position]} is clicked")
+                                GlobalScope.launch (Dispatchers.Main) {
+                                    context?.let {
+                                        val action = HomeFragmentDirections.actionHomeFragmentToProvidersFragment()
+                                            .setCategoryId(HealthCareDatabase(it).providerDao().getCategoryId(list[position]))
+                                        findNavController().navigate(action)
+                                    }
+                                }
                             }
                         })
 
