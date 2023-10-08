@@ -9,12 +9,10 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.michaelmagdy.publicHealthCareDemo.R
 import com.michaelmagdy.publicHealthCareDemo.adapter.ListAdapter
 import com.michaelmagdy.publicHealthCareDemo.currentUserId
 import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentHomeBinding
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.HealthCareDatabase
-import com.michaelmagdy.publicHealthCareDemo.dbDirectery.user.UserEntity
 import com.michaelmagdy.publicHealthCareDemo.fragment.BaseFragment
 import com.michaelmagdy.publicHealthCareDemo.toast
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -82,7 +80,13 @@ class ProvidersFragment : BaseFragment() {
 
                         listAdapter.setOnItemClickListener(object : ListAdapter.OnItemClickListener{
                             override fun onItemClick(position: Int) {
-                                it.toast("${list[position]} is clicked")
+                                GlobalScope.launch (Dispatchers.Main) {
+                                    context?.let {
+                                        val action = ProvidersFragmentDirections.actionProvidersFragmentToServicesFragment()
+                                            .setProviderId(HealthCareDatabase(it).providerDao().getProviderId(strList[position]))
+                                        findNavController().navigate(action)
+                                    }
+                                }
                             }
                         })
 
