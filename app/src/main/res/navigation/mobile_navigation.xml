@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_homeFragment_to_providersFragment"
             app:destination="@id/provider_fragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/createAccountFragment"
@@ -76,5 +79,10 @@
             app:argType="integer"
             android:defaultValue="0" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.michaelmagdy.publicHealthCareDemo.fragment.profile.ProfileFragment"
+        android:label="profile"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>

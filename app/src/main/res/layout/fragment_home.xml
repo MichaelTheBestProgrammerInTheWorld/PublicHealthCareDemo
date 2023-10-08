@@ -35,4 +35,13 @@
         app:maxImageSize="40dp"
         android:visibility="gone"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_profile"
+        android:layout_alignParentBottom="true"
+        android:text="Profile"
+        android:textSize="22sp"
+        android:visibility="gone"/>
+
 </RelativeLayout>

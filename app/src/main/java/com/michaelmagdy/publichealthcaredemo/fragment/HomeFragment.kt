@@ -81,6 +81,10 @@ class HomeFragment : BaseFragment(), DeleteItem {
 
             binding.febAdd.visibility = View.VISIBLE
         }
+        binding.btnProfile.visibility = View.VISIBLE
+        binding.btnProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+        }
         binding.recycleview.apply {
             layoutManager =
                 LinearLayoutManager(context?.applicationContext, RecyclerView.VERTICAL, true)

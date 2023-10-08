@@ -94,7 +94,7 @@ class ServicesFragment : BaseFragment() {
                                 GlobalScope.launch {
                                     context?.let {
                                         val bookingEntity = BookingEntity(
-                                            SimpleDateFormat("'Date\n'dd-MM-yyyy '\n\nand\n\nTime\n'HH:mm:ss z").format(
+                                            SimpleDateFormat("dd-MM-yyyy HH:mm:ss z").format(
                                                 Date()
                                             ),
                                             HealthCareDatabase(it).serviceDao().getServiceId(strList[position]),

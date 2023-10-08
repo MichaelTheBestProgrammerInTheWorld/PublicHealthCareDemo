@@ -58,7 +58,7 @@ class ProvidersFragment : BaseFragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun getdatafrombd() {
 
-        val catId = ProvidersFragmentArgs.fromBundle(arguments!!).categoryId
+        val catId = ProvidersFragmentArgs.fromBundle(requireArguments()).categoryId
 
         GlobalScope.launch {
 
@@ -66,7 +66,9 @@ class ProvidersFragment : BaseFragment() {
             withContext(Dispatchers.Main) {
                 context?.let {
                     var list = HealthCareDatabase(it).providerDao()
-                        .getAllProvidersByCategoryAndLocation(catId!!, currentUserId)
+                        .getAllProvidersByCategoryAndLocation(catId!!,
+                            HealthCareDatabase(it).userDao().getUserById(currentUserId).locationId
+                            )
                     if (list.isNotEmpty()) {
 
                         var strList: ArrayList<String> = arrayListOf()

@@ -102,7 +102,7 @@ class SignInFragment : BaseFragment() {
                         val userEntity = UserEntity(
                             "admin",
                             "admin",
-                            0
+                            1
                         )
                         HealthCareDatabase(it).userDao().createUser(userEntity)
                     }
