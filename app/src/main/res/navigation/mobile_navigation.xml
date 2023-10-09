@@ -10,14 +10,15 @@
         android:label="Category List"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_mobile_navigation_to_addNoteFragment"
-            app:destination="@id/createAccountFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_providersFragment"
             app:destination="@id/provider_fragment" />
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_adminPanelFragment"
+            app:destination="@id/adminPanelFragment"
+            app:popUpTo="@id/home_fragment" />
     </fragment>
     <fragment
         android:id="@+id/createAccountFragment"
@@ -84,5 +85,10 @@
         android:name="com.michaelmagdy.publicHealthCareDemo.fragment.profile.ProfileFragment"
         android:label="profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/adminPanelFragment"
+        android:name="com.michaelmagdy.publicHealthCareDemo.fragment.adminPanel.AdminPanelFragment"
+        android:label="admin panel"
+        tools:layout="@layout/fragment_admin_panel" />
 
 </navigation>

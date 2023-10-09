@@ -97,7 +97,7 @@ class HomeFragment : BaseFragment(), DeleteItem {
 
 
         binding.febAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_mobile_navigation_to_addNoteFragment)
+            findNavController().navigate(R.id.action_home_fragment_to_adminPanelFragment)
         }
 
     }
