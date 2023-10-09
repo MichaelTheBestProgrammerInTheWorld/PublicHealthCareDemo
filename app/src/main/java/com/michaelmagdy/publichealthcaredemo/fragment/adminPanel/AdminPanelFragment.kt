@@ -7,13 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.michaelmagdy.publicHealthCareDemo.R
 import com.michaelmagdy.publicHealthCareDemo.adapter.ListAdapter
 import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentAdminPanelBinding
 import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentHomeBinding
+import com.michaelmagdy.publicHealthCareDemo.dbDirectery.HealthCareDatabase
 import com.michaelmagdy.publicHealthCareDemo.fragment.BaseFragment
+import com.michaelmagdy.publicHealthCareDemo.fragment.HomeFragmentDirections
 import com.michaelmagdy.publicHealthCareDemo.toast
 import kotlinx.coroutines.DelicateCoroutinesApi
 
@@ -49,11 +52,23 @@ class AdminPanelFragment : BaseFragment() {
             android.R.layout.simple_list_item_1, options)
         binding.panelList.adapter = arrayAdapter
         binding.panelList.setOnItemClickListener { adapterView, view, i, l ->
-            context?.toast("${options[i]} is clicked")
+            when(i){
+                0 -> {
+                    val action = AdminPanelFragmentDirections.actionAdminPanelFragmentToAddCategoryAndLocationFragment(i)
+
+                    findNavController().navigate(action)
+                }
+                1 -> {}
+                2 -> {}
+                3 -> {
+                    val action = AdminPanelFragmentDirections.actionAdminPanelFragmentToAddCategoryAndLocationFragment(i)
+
+                    findNavController().navigate(action)
+                }
+                4 -> {}
+            }
         }
 
-        // coroutine implementation
-        //getdatafrombd()
 
     }
 

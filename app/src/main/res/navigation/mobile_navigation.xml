@@ -89,6 +89,19 @@
         android:id="@+id/adminPanelFragment"
         android:name="com.michaelmagdy.publicHealthCareDemo.fragment.adminPanel.AdminPanelFragment"
         android:label="admin panel"
-        tools:layout="@layout/fragment_admin_panel" />
+        tools:layout="@layout/fragment_admin_panel" >
+        <action
+            android:id="@+id/action_adminPanelFragment_to_addCategoryAndLocationFragment"
+            app:destination="@id/addCategoryAndLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCategoryAndLocationFragment"
+        android:name="com.michaelmagdy.publicHealthCareDemo.fragment.adminPanel.AddCategoryAndLocationFragment"
+        android:label="fragment_add_category_and_location"
+        tools:layout="@layout/fragment_add_category_and_location" >
+        <argument
+            android:name="position"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>
