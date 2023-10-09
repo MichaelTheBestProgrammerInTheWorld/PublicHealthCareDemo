@@ -96,6 +96,9 @@
         <action
             android:id="@+id/action_adminPanelFragment_to_addServiceFragment"
             app:destination="@id/addServiceFragment" />
+        <action
+            android:id="@+id/action_adminPanelFragment_to_addProviderFragment"
+            app:destination="@id/addProviderFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCategoryAndLocationFragment"
@@ -111,5 +114,10 @@
         android:name="com.michaelmagdy.publicHealthCareDemo.fragment.adminPanel.AddServiceFragment"
         android:label="add service"
         tools:layout="@layout/fragment_add_service" />
+    <fragment
+        android:id="@+id/addProviderFragment"
+        android:name="com.michaelmagdy.publicHealthCareDemo.fragment.adminPanel.AddProviderFragment"
+        android:label="add provider"
+        tools:layout="@layout/fragment_add_provider" />
 
 </navigation>

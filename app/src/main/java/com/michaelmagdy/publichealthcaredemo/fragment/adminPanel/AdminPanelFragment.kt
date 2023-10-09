@@ -58,7 +58,9 @@ class AdminPanelFragment : BaseFragment() {
 
                     findNavController().navigate(action)
                 }
-                1 -> {}
+                1 -> {
+                    findNavController().navigate(R.id.action_adminPanelFragment_to_addProviderFragment)
+                }
                 2 -> {
                     findNavController().navigate(R.id.action_adminPanelFragment_to_addServiceFragment)
                 }
