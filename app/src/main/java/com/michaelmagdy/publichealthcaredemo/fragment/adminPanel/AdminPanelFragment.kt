@@ -59,7 +59,9 @@ class AdminPanelFragment : BaseFragment() {
                     findNavController().navigate(action)
                 }
                 1 -> {}
-                2 -> {}
+                2 -> {
+                    findNavController().navigate(R.id.action_adminPanelFragment_to_addServiceFragment)
+                }
                 3 -> {
                     val action = AdminPanelFragmentDirections.actionAdminPanelFragmentToAddCategoryAndLocationFragment(i)
 

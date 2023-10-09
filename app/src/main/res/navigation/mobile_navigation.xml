@@ -93,15 +93,23 @@
         <action
             android:id="@+id/action_adminPanelFragment_to_addCategoryAndLocationFragment"
             app:destination="@id/addCategoryAndLocationFragment" />
+        <action
+            android:id="@+id/action_adminPanelFragment_to_addServiceFragment"
+            app:destination="@id/addServiceFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCategoryAndLocationFragment"
         android:name="com.michaelmagdy.publicHealthCareDemo.fragment.adminPanel.AddCategoryAndLocationFragment"
-        android:label="fragment_add_category_and_location"
+        android:label="add new"
         tools:layout="@layout/fragment_add_category_and_location" >
         <argument
             android:name="position"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/addServiceFragment"
+        android:name="com.michaelmagdy.publicHealthCareDemo.fragment.adminPanel.AddServiceFragment"
+        android:label="add service"
+        tools:layout="@layout/fragment_add_service" />
 
 </navigation>
