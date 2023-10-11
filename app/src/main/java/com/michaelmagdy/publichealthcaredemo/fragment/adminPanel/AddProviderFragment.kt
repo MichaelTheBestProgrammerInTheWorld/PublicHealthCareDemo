@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.navigation.fragment.findNavController
 import com.michaelmagdy.publicHealthCareDemo.R
 import com.michaelmagdy.publicHealthCareDemo.alert
 import com.michaelmagdy.publicHealthCareDemo.databinding.FragmentAddProviderBinding
@@ -15,7 +16,9 @@ import com.michaelmagdy.publicHealthCareDemo.dbDirectery.HealthCareDatabase
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.provider.ProviderEntity
 import com.michaelmagdy.publicHealthCareDemo.dbDirectery.service.ServiceEntity
 import com.michaelmagdy.publicHealthCareDemo.fragment.BaseFragment
+import com.michaelmagdy.publicHealthCareDemo.fragment.booking.ProvidersFragmentDirections
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -83,7 +86,7 @@ class AddProviderFragment : BaseFragment() {
                     val title = binding.editTextText3.text.toString().trim()
                     val categoryName = binding.categorySpinner.selectedItem.toString()
                     val locationName = binding.locationSpinner.selectedItem.toString()
-                    GlobalScope.launch {
+                    GlobalScope.launch (Dispatchers.Main) {
                         context?.let {
                             val provider = ProviderEntity(
                                 title,
@@ -91,9 +94,11 @@ class AddProviderFragment : BaseFragment() {
                                 HealthCareDatabase(it).locationDao().getLocationId(locationName)
                             )
                             HealthCareDatabase(it).providerDao().insertProvider(provider)
+                            val action = AddProviderFragmentDirections.actionAddProviderFragmentToAddProviderServicesFragment(provider)
+                            findNavController().navigate(action)
                         }
                     }
-                    //TODO: MOVE TO NEXT SCREEN TO ADD SERVICES TO NEWLY CREATED PROVIDER
+
                 }
             }
         }

@@ -118,6 +118,19 @@
         android:id="@+id/addProviderFragment"
         android:name="com.michaelmagdy.publicHealthCareDemo.fragment.adminPanel.AddProviderFragment"
         android:label="add provider"
-        tools:layout="@layout/fragment_add_provider" />
+        tools:layout="@layout/fragment_add_provider" >
+        <action
+            android:id="@+id/action_addProviderFragment_to_addProviderServicesFragment"
+            app:destination="@id/addProviderServicesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addProviderServicesFragment"
+        android:name="com.michaelmagdy.publicHealthCareDemo.fragment.adminPanel.AddProviderServicesFragment"
+        android:label="select services to your provider"
+        tools:layout="@layout/fragment_add_provider_services" >
+        <argument
+            android:name="provider"
+            app:argType="com.michaelmagdy.publicHealthCareDemo.dbDirectery.provider.ProviderEntity" />
+    </fragment>
 
 </navigation>
