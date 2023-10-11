@@ -31,8 +31,6 @@ class CreateAccountFragment : BaseFragment(), AdapterView.OnItemSelectedListener
     private lateinit var addNoteBinding: FragmentCreateAccountBinding
     private val binding get() = addNoteBinding
 
-    private lateinit var viewModel: CreateAccountViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -105,7 +103,6 @@ class CreateAccountFragment : BaseFragment(), AdapterView.OnItemSelectedListener
     @OptIn(DelicateCoroutinesApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[CreateAccountViewModel::class.java]
         arguments?.let {
             utaskItem = CreateAccountFragmentArgs.fromBundle(it).userEntity
             binding.etName.setText(utaskItem?.username)
